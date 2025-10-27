@@ -1,9 +1,9 @@
 # <img src="lib/gacso.png" alt="Gacso Logo" width="60" height="60" align="left" /> gacs_pack
 
-[![Gem Version](https://badge.fury.io/rb/gacs_pack.svg)](https://badge.fury.io/rb/gacs_pack)
-[![Build Status](https://github.com/Patientevity/gacs_pack/actions/workflows/ci.yml/badge.svg)](https://github.com/Patientevity/gacs_pack/actions)
+[![CI](https://github.com/Patientevity/gacs_pack/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Patientevity/gacs_pack/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.2-red)](https://www.ruby-lang.org/en/)
+[![RBS](https://img.shields.io/badge/Types-RBS-blue)](https://github.com/ruby/rbs)
 
 > **gacs_pack** — the Graph‑Aware Context System for Rails.
 > Build token‑budgeted, auditable context packs for AI agents with role‑ and intent‑specific awareness.
