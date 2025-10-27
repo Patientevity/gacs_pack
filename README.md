@@ -59,7 +59,7 @@ Each `snapshot` returns a stable `context_pack_id` you can attach to AI outputs 
 
 ## 📖 Documentation
 
-- [Quick Start Guide](https://github.com/Patientevity/gacs_pack#quick-start)
+- [Quick Start Guide](#quick-start)
 - [Adapters & Ports](https://github.com/Patientevity/gacs_pack/blob/main/docs/adapters.md)
 - [Intent Templates](https://github.com/Patientevity/gacs_pack/blob/main/docs/intents.md)
 - [Token Budgeting](https://github.com/Patientevity/gacs_pack/blob/main/docs/token_budgeting.md)
