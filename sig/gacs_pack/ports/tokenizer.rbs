@@ -1,0 +1,14 @@
+module GacsPack
+  module Ports
+    module Tokenizer
+      type section = Hash[Symbol, untyped]
+
+      def count_tokens: (String | Hash[Symbol, untyped] obj) -> Integer
+
+      def truncate_sections: (
+        Array[section] sections,
+        budget_tokens: Integer
+      ) -> Array[section]
+    end
+  end
+end

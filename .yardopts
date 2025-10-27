@@ -1,0 +1,13 @@
+--markup markdown
+--title "gacs_pack - Graph-Aware Context System for Rails"
+--readme README.md
+--protected
+--private
+--output-dir doc
+lib/**/*.rb
+sig/**/*.rbs
+-
+LICENSE
+CHANGELOG.md
+CONTRIBUTING.md
+docs/*.md

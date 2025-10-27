@@ -1,0 +1,31 @@
+module GacsPack
+  class Snapshot
+    type section = Hash[Symbol, untyped]
+    type snapshot_hash = {
+      sections: Array[section],
+      policy_version: String,
+      meta: Hash[Symbol, untyped],
+      lineage: Array[String]
+    }
+
+    @sections: Array[section]
+    @policy_version: String
+    @meta: Hash[Symbol, untyped]
+
+    attr_reader sections: Array[section]
+    attr_reader policy_version: String
+    attr_reader meta: Hash[Symbol, untyped]
+
+    def initialize: (
+      sections: Array[section],
+      policy_version: String,
+      ?meta: Hash[Symbol, untyped]
+    ) -> void
+
+    def to_h: () -> snapshot_hash
+
+    def canonical_json: () -> String
+
+    def stable_hash: () -> String
+  end
+end

@@ -1,0 +1,17 @@
+module GacsPack
+  class TokenBudgeter
+    type section = Hash[Symbol, untyped]
+    type raw_context = {
+      sections: Array[section]
+    }
+
+    @tokenizer: untyped
+
+    def initialize: (untyped tokenizer) -> void
+
+    def pack: (
+      raw_context | Hash[Symbol, untyped] raw,
+      budget_tokens: Integer
+    ) -> Array[section]
+  end
+end

@@ -1,4 +1,79 @@
+# typed: true
+
 module GacsPack
   VERSION: String
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+
+  # Raised for any gem-level errors
+  class Error < StandardError
+  end
+
+  # Configuration object
+  class Config
+    attr_accessor graph: untyped
+    attr_accessor store: untyped
+    attr_accessor events: untyped
+    attr_accessor pii_shield: untyped
+    attr_accessor tokenizer: untyped
+    attr_accessor logger: untyped
+    attr_accessor policy_version: String?
+
+    def self.configure: () { (Config) -> void } -> Config
+    def self.current: () -> Config
+  end
+
+  # TokenBudgeter handles packing sections within a token budget
+  class TokenBudgeter
+    def initialize: (untyped tokenizer) -> void
+    def pack: (Hash[Symbol, untyped] raw, budget_tokens: Integer) -> Array[Hash[Symbol, untyped]]
+  end
+
+  # Lineage tracks provenance information
+  class Lineage
+    def self.from: (Array[Hash[Symbol, untyped]]? sections) -> Array[String]
+  end
+
+  # Snapshot represents an immutable context pack with stable hashing
+  class Snapshot
+    attr_reader sections: Array[Hash[Symbol, untyped]]
+    attr_reader policy_version: String
+    attr_reader meta: Hash[Symbol, untyped]
+
+    def initialize: (
+      sections: Array[Hash[Symbol, untyped]],
+      policy_version: String,
+      ?meta: Hash[Symbol, untyped]
+    ) -> void
+
+    def to_h: () -> Hash[Symbol, untyped]
+    def canonical_json: () -> String
+    def stable_hash: () -> String
+  end
+
+  # ContextEngine builds role/intent-aware context packs
+  class ContextEngine
+    def initialize: (Config cfg) -> void
+    def build: (
+      subject_id: Integer | String,
+      subject_type: String,
+      intent: String,
+      role: String,
+      budget_tokens: Integer
+    ) -> [String, Hash[Symbol, untyped]]
+  end
+
+  # Rails engine hook (for asset loading)
+  class Engine < ::Rails::Engine
+  end if defined?(::Rails)
+
+  # ---- Top-level module methods ----
+  def self.configure: () { (Config) -> void } -> Config
+  def self.config: () -> Config
+  def self.build: (
+    subject_id: Integer | String,
+    subject_type: String,
+    intent: String,
+    role: String,
+    budget_tokens: Integer
+  ) -> [String, Hash[Symbol, untyped]]
+  def self.logo_path: () -> String
 end

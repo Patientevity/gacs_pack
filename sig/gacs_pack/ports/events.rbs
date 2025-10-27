@@ -1,0 +1,10 @@
+module GacsPack
+  module Ports
+    module Events
+      def emit: (
+        Symbol | String event_name,
+        **untyped payload
+      ) -> void
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module GacsPack
+  module Ports
+    module Store
+      def save!: (
+        id: String,
+        snapshot: Snapshot | Hash[Symbol, untyped],
+        meta: Hash[Symbol, untyped]
+      ) -> void
+    end
+  end
+end

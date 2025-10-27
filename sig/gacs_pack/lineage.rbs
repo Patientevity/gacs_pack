@@ -1,0 +1,7 @@
+module GacsPack
+  class Lineage
+    type section = Hash[Symbol, untyped]
+
+    def self.from: (Array[section]? sections) -> Array[String]
+  end
+end

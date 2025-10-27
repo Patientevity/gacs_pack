@@ -1,43 +1,119 @@
-# GacsPack
+# ![Gacso Logo](lib/gacso.png) gacs_pack
 
-TODO: Delete this and the text below, and describe your gem
+[![Gem Version](https://badge.fury.io/rb/gacs_pack.svg)](https://badge.fury.io/rb/gacs_pack)
+[![Build Status](https://github.com/raycifer/gacs_pack/actions/workflows/ci.yml/badge.svg)](https://github.com/raycifer/gacs_pack/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.1-red)](https://www.ruby-lang.org/en/)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gacs_pack`. To experiment with that code, run `bin/console` for an interactive prompt.
+> **gacs_pack** — the Graph‑Aware Context System for Rails.
+> Build token‑budgeted, auditable context packs for AI agents with role‑ and intent‑specific awareness.
+> Powered by **Gacso**, the friendly octopus who keeps your AI in context 🐙
 
-## Installation
+---
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+## 🚀 Quick Start
 
-Install the gem and add to the application's Gemfile by executing:
+Add to your Gemfile:
 
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem "gacs_pack"
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Then install and run the migration generator:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle install
+bin/rails g gacs_pack:install
+bin/rails db:migrate
 ```
 
-## Usage
+Configure your adapters in `config/initializers/gacs_pack.rb`:
 
-TODO: Write usage instructions here
+```ruby
+GacsPack.configure do |c|
+  c.graph        = PatientevityGraphAdapter.new
+  c.store        = ActiveRecordSnapshotStore.new
+  c.events       = RailsEventBusAdapter.new
+  c.pii_shield   = TenantPIIShield.new
+  c.tokenizer    = AnthropicTokenizer.new
+  c.policy_version = "caregap-v1"
+  c.logger       = Rails.logger
+end
+```
 
-## Development
+Then build your first context pack:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+id, snapshot = GacsPack.build(
+  subject_id: patient.id,
+  subject_type: "Patient",
+  intent: "care_gap_analysis",
+  role: "provider",
+  budget_tokens: 8000
+)
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Each `snapshot` returns a stable `context_pack_id` you can attach to AI outputs for provenance and audit.
 
-## Contributing
+---
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gacs_pack. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/gacs_pack/blob/main/CODE_OF_CONDUCT.md).
+## 📖 Documentation
 
-## License
+- [Quick Start Guide](https://github.com/raycifer/gacs_pack#quick-start)
+- [Adapters & Ports](https://github.com/raycifer/gacs_pack/docs/adapters.md)
+- [Intent Templates](https://github.com/raycifer/gacs_pack/docs/intents.md)
+- [Token Budgeting](https://github.com/raycifer/gacs_pack/docs/token_budgeting.md)
+- [Contributing](https://github.com/raycifer/gacs_pack/CONTRIBUTING.md)
+- [License](#license)
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+---
 
-## Code of Conduct
+## 🧩 Example Adapters
 
-Everyone interacting in the GacsPack project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/gacs_pack/blob/main/CODE_OF_CONDUCT.md).
+**Graph Adapter**
+```ruby
+class PatientevityGraphAdapter
+  include GacsPack::Ports::Graph
+  def build_context(subject_id:, subject_type:, intent:, role:)
+    {
+      sections: [
+        { key: "demographics", title: "Demographics", body: "...", weight: 1.0 },
+        { key: "conditions",   title: "Conditions",   body: "...", weight: 1.5 }
+      ]
+    }
+  end
+end
+```
+
+**Store Adapter**
+```ruby
+class ActiveRecordSnapshotStore
+  include GacsPack::Ports::Store
+  def save!(id:, snapshot:, meta:)
+    ContextPack.upsert({
+      id: id,
+      tenant_id: Current.tenant_id,
+      payload: snapshot.to_h,
+      meta: meta,
+      created_at: Time.current,
+      updated_at: Time.current
+    }, unique_by: :id)
+  end
+end
+```
+
+---
+
+## 🐙 Mascot — Meet Gacso
+
+Say hello to **Gacso**, the friendly octopus who wrangles your context graphs and keeps every AI grounded in the right data.
+![Gacso](lib/gacso.png)
+
+> _“Gacso helps your AI stay in context.”_
+
+---
+
+## 📜 License
+
+Released under the [MIT License](https://opensource.org/licenses/MIT).
+© 2025 Raymond Hughes.

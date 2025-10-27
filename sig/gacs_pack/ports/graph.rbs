@@ -1,0 +1,25 @@
+module GacsPack
+  module Ports
+    module Graph
+      type section = {
+        key: String,
+        title: String,
+        body: String,
+        weight: Float?,
+        lineage: Array[String]?,
+        refs: Array[String]?
+      }
+
+      type context_response = {
+        sections: Array[section]
+      }
+
+      def build_context: (
+        subject_id: Integer | String,
+        subject_type: String,
+        intent: String,
+        role: String
+      ) -> context_response
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module GacsPack
+  module Ports
+    module PIIShield
+      def redact: (
+        Hash[Symbol, untyped] raw_context,
+        role: String,
+        intent: String
+      ) -> Hash[Symbol, untyped]
+    end
+  end
+end
