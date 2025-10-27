@@ -1,7 +1,7 @@
-# ![Gacso Logo](lib/gacso.png) gacs_pack
+# <img src="lib/gacso.png" alt="Gacso Logo" width="60" height="60" align="left" /> gacs_pack
 
 [![Gem Version](https://badge.fury.io/rb/gacs_pack.svg)](https://badge.fury.io/rb/gacs_pack)
-[![Build Status](https://github.com/raycifer/gacs_pack/actions/workflows/ci.yml/badge.svg)](https://github.com/raycifer/gacs_pack/actions)
+[![Build Status](https://github.com/Patientevity/gacs_pack/actions/workflows/ci.yml/badge.svg)](https://github.com/Patientevity/gacs_pack/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.1-red)](https://www.ruby-lang.org/en/)
 
@@ -59,11 +59,11 @@ Each `snapshot` returns a stable `context_pack_id` you can attach to AI outputs 
 
 ## 📖 Documentation
 
-- [Quick Start Guide](https://github.com/raycifer/gacs_pack#quick-start)
-- [Adapters & Ports](https://github.com/raycifer/gacs_pack/docs/adapters.md)
-- [Intent Templates](https://github.com/raycifer/gacs_pack/docs/intents.md)
-- [Token Budgeting](https://github.com/raycifer/gacs_pack/docs/token_budgeting.md)
-- [Contributing](https://github.com/raycifer/gacs_pack/CONTRIBUTING.md)
+- [Quick Start Guide](https://github.com/Patientevity/gacs_pack#quick-start)
+- [Adapters & Ports](https://github.com/Patientevity/gacs_pack/blob/main/docs/adapters.md)
+- [Intent Templates](https://github.com/Patientevity/gacs_pack/blob/main/docs/intents.md)
+- [Token Budgeting](https://github.com/Patientevity/gacs_pack/blob/main/docs/token_budgeting.md)
+- [Contributing](https://github.com/Patientevity/gacs_pack/blob/main/CONTRIBUTING.md)
 - [License](#license)
 
 ---
@@ -107,9 +107,10 @@ end
 ## 🐙 Mascot — Meet Gacso
 
 Say hello to **Gacso**, the friendly octopus who wrangles your context graphs and keeps every AI grounded in the right data.
-![Gacso](lib/gacso.png)
 
-> _“Gacso helps your AI stay in context.”_
+<img src="lib/gacso.png" alt="Gacso the octopus mascot" width="400" />
+
+> _"Gacso helps your AI stay in context."_
 
 ---
 
