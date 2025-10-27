@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/gacs_pack.svg)](https://badge.fury.io/rb/gacs_pack)
 [![Build Status](https://github.com/Patientevity/gacs_pack/actions/workflows/ci.yml/badge.svg)](https://github.com/Patientevity/gacs_pack/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.1-red)](https://www.ruby-lang.org/en/)
+[![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.2-red)](https://www.ruby-lang.org/en/)
 
 > **gacs_pack** — the Graph‑Aware Context System for Rails.
 > Build token‑budgeted, auditable context packs for AI agents with role‑ and intent‑specific awareness.

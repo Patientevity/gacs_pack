@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     gacs_pack (0.1.0)
-      activesupport (>= 7.0, < 8.0)
+      activesupport (>= 7.0)
       json (>= 2.6)
 
 GEM

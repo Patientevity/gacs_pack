@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   # Public repo / site (adjust org/name as needed)
   spec.homepage              = "https://github.com/Patientevity/gacs_pack"
   spec.license               = "MIT"
-  spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
   # Useful RubyGems metadata
   spec.metadata = {
@@ -44,8 +44,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime deps (add as you wire things up)
-  # ActiveSupport 8.x requires Ruby >= 3.2, constrain to 7.x for Ruby 3.1 compatibility
-  spec.add_dependency "activesupport", ">= 7.0", "< 8.0"
+  spec.add_dependency "activesupport", ">= 7.0"
   spec.add_dependency "json", ">= 2.6"
 
   # Dev/test suggestions (optional — add to your Gemfile instead if you prefer)

@@ -44,8 +44,8 @@ module GacsPack
     #
     # Params:
     #   subject_id:, subject_type:, intent:, role:, budget_tokens:
-    def build(**kwargs)
-      ContextEngine.new(config).build(**kwargs)
+    def build(**)
+      ContextEngine.new(config).build(**)
     end
 
     # Public: absolute path to the Gacso logo inside the gem

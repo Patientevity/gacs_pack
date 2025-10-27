@@ -1,5 +1,25 @@
 ## [Unreleased]
 
+### Changed
+- **Breaking**: Minimum Ruby version updated from 3.1 to 3.2
+  - Required due to dependency constraints (erb 5.1.1, ActiveSupport 8.x)
+  - CI now tests Ruby 3.2 and 3.3
+- Updated RuboCop target to Ruby 3.2
+- Removed ActiveSupport < 8.0 constraint (now supports 7.x and 8.x)
+- Modernized code to use Ruby 3.2+ keyword argument forwarding (`**`)
+
+### Fixed
+- Fixed CI build failures caused by Ruby 3.1 incompatible dependencies
+- Fixed README documentation links (Quick Start Guide, License)
+- Resized Gacso logo images in README for better display
+
+### Added
+- Comprehensive Quick Start Guide (`docs/quickstart.md`)
+  - Complete installation walkthrough
+  - Minimal adapter implementations for all 5 ports
+  - Real-world example: Care Gap Analysis Service
+  - Troubleshooting section
+
 ## [0.1.0] - 2025-10-26
 
 ### Added
